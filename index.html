@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		
+		<link rel="stylesheet" href="styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&amp;display=swap" rel="stylesheet">
+		
+		<script src="ascii-gen.js"></script>
+		<script src="index.js"></script>
+		
+		<title>ASCII Image Generator</title>
+	</head>
+	<body>
+		<nav>
+			<span class="title">ASCII Image Generator</span>
+		</nav>
+		<div class="main-container">
+			<div class="left">
+				<div class="drop-area">
+					<input id="file-select" type="file" accept="image/*" style="display: none;">
+					<label for="file-select">Choose a file</label>
+					<span>...or drop it here</span>
+					<img class="drop-image-display">
+				</div>
+				<div class="settings">
+					<fieldset>
+						<legend>General</legend>
+						<div class="number">
+							<label for="width">Width:</label>
+							<input type="number" id="width" checked="">
+						</div>
+						<div>
+							<input type="checkbox" id="invert-img" checked>
+							<label for="invert-img">Invert image (for dark mode)</label>
+						</div>
+						<div>
+							<input type="checkbox" id="double-char" checked>
+							<label for="double-char">Double every character (for fonts with 1:2 ratio)</label>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Character set</legend>
+						<div>
+							<input type="checkbox" id="blocks" name="horns" checked>
+							<label for="blocks">Blocks (█, ▓, ▒, ░)</label>
+						</div>
+						<div>
+							<input type="checkbox" id="space" name="horns" checked>
+							<label for="space">Space ( )</label>
+						</div>
+						<div>
+							<input type="checkbox" id="alphanumeric" name="scales">
+							<label for="alphanumeric">Alphanumeric (a-z, A-Z, 0-9)</label>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<textarea spellcheck="false">
+Welcome to the ASCII IMAGE GENERATOR!
+- Source code: <https://github.com/TheFloatingPixel/ascii-image-generator>
+- Created by TheFloatingPixel
+
+HOW TO USE:
+
+  1. Drag a file to the box on the left, or press the SELECT FILE button.
+
+  2. Set the desired ASCII ART size
+
+  3. The ASCII ART will appear in this textbox. You can copy it from here!
+			</textarea>
+		</div>
+	</body>
+	<style type="text/css"></style>
+</html>
