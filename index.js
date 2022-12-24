@@ -1,5 +1,7 @@
 document.addEventListener(`DOMContentLoaded`, async () => {
 	
+	let currentImageURL = null;
+	
 	let dragHandler = e => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -28,8 +30,12 @@ document.addEventListener(`DOMContentLoaded`, async () => {
 		const dropArea = document.querySelector(`.drop-area`);
 		
 		if (!e.target.files) return;
+		if (currentImageURL != null) {
+			URL.revokeObjectURL(currentImageURL);
+		}
 		
 		let objectUrl = URL.createObjectURL(e.target.files[0]);
+		currentImageURL = objectUrl;
 		
 		imgDisplay.src = objectUrl;
 		dropArea.classList.add(`with-image`);
@@ -40,7 +46,6 @@ document.addEventListener(`DOMContentLoaded`, async () => {
 			imgDisplay.classList.remove("pixelated");
 		}
 		
-		URL.revokeObjectURL(objectUrl);
 	});
 	
 	document.querySelector(`.drop-image-display`).addEventListener(`load`, e => {
