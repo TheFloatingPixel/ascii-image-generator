@@ -59,20 +59,39 @@ document.addEventListener(`DOMContentLoaded`, async () => {
 		document.querySelector("html").dataset.theme = "dark";
 	}
 	
+	const CHARS_BLOCKS = [`█`, `▓`, `▒`, `░`];
+	const CHARS_LETTERS = [...`abcdefghijklmnopqrstuvwxyz`];
+	const CHARS_UPPERCASE_LETTERS = [...`ABCDEFGHIJKLMNOPQRSTUVWXYZ`];
+	const CHARS_NUMBERS = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`];
+	const CHARS_SPECIAL = [`!`, `@`, `#`, `$`, `%`, `^`, `&`, `*`, `(`, `)`, `-`, `+`, `_`, `=`];
+	
 	const refreshOutput = () => {
 		let width = Number(document.querySelector(`#width`).value),
 			invertImg = document.querySelector(`#invert-img`).checked,
 			doubleChar = document.querySelector(`#double-char`).checked;
+		
+		let allowedCharArrays = []
+		
+		if (document.querySelector(`#blocks`).checked)
+			allowedCharArrays.push(CHARS_BLOCKS);
+		if (document.querySelector(`#space`).checked)
+			allowedCharArrays.push(` `);
+		if (document.querySelector(`#alphanumeric`).checked)
+			allowedCharArrays.push(CHARS_LETTERS, CHARS_UPPERCASE_LETTERS, CHARS_NUMBERS);
+		//if (document.querySelector(`#special`).checked)
+		//	allowedCharArrays.push(CHARS_LETTERS, CHARS_UPPERCASE_LETTERS, CHARS_NUMBERS);
 		
 		if (width < 2) {
 			document.querySelector(`.main-container > textarea`).value = "ERROR: WIDTH must be greater than 1";
 			return;
 		}
 		
+		console.log([...new Set(allowedCharArrays.flat())])
+		
 		generatedText = ASCIIArtGenerator.generateText(
 			document.querySelector(".drop-image-display"),
 			width,
-			[" ", "█", "▓", "▒", "░"],
+			[...new Set(allowedCharArrays.flat())],
 			invertImg,
 			doubleChar
 		);

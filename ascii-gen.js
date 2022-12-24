@@ -1,7 +1,7 @@
 window.ASCIIArtGenerator = {
 	generateText: (image, width, allowedChars, invertImage = false, doubleChar = false) => {
 		
-		const calculateAverageCharColor = char => {
+		const calculateAverageCharColor = c => {
             const canvas = document.createElement(`canvas`);
             let ctx = canvas.getContext(`2d`);
             
@@ -16,7 +16,7 @@ window.ASCIIArtGenerator = {
             ctx.font = `32px monospace`;
             ctx.imageSmoothingEnabled = false;
             ctx.fillStyle = "#000000ff";
-            ctx.fillText(char, 0, 32);
+            ctx.fillText(c, 0, 32);
             
             const data = ctx.getImageData(0, 0, 16, 32).data;
             let colorSum = 0;
@@ -32,12 +32,12 @@ window.ASCIIArtGenerator = {
 		}
 		
 		const allowedCharColors = []
-		for (char of allowedChars) {
-			if (!char in ASCIIArtGenerator.calculatedCharacters) {
-				ASCIIArtGenerator.calculatedCharacters[char] = calculateAverageCharColor(char);
+		for (c of allowedChars) {
+			if (!(c in ASCIIArtGenerator.calculatedCharacters)) {
+				ASCIIArtGenerator.calculatedCharacters[c] = calculateAverageCharColor(c);
 			}
 			
-			allowedCharColors.push(ASCIIArtGenerator.calculatedCharacters[char])
+			allowedCharColors.push(ASCIIArtGenerator.calculatedCharacters[c])
 		}
 		
 		const imgRatio = image.naturalWidth / image.naturalHeight;
